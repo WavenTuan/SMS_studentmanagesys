@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="cn.com.dhw.sms.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="cn.com.dhw.sms.ScorePerspective"
+            name="成绩管理"
+            id="cn.com.dhw.sms.ScorePerspective">
+      </perspective>
+   </extension>
+   
+    <extension point="org.eclipse.ui.commands">
+      <command
+            id="cn.com.dhw.sms.score_perspective"
+            name="打开成绩管理透视图"/>
+   </extension>
+   <extension point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.ui.file.exit"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+Q"/>
+      <key
+            commandId="cn.com.dhw.sms.score_perspective"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+S"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views">
+      <category
+            name="学生管理"
+            id="cn.com.dhw.sms.view">
+      </category>
+      <view
+            name="功能导航器"
+            icon="icons/project.gif"
+            category="cn.com.dhw.sms.view"
+            class="cn.com.dhw.sms.navigator.NavigatorView"
+            id="cn.com.dhw.sms.navigator.NavigatorView">
+      </view>
+      <view
+            name="搜索视图"
+            icon="icons/project.gif"
+            category="cn.com.dhw.sms.view"
+            class="cn.com.dhw.sms.score.SearchView"
+            id="cn.com.dhw.sms.score.SearchView">
+      </view>
+   </extension>
+
+</plugin>

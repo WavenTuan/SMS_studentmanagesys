@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Students_management_sys
+Bundle-SymbolicName: cn.com.dhw.sms;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: cn.com.dhw.sms.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.apache.felix.scr,
+ org.eclipse.equinox.event
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: cn.com.dhw.sms
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/mysql-connector-java-5.0.4-bin.jar,
+ .
