@@ -3,6 +3,9 @@ package cn.com.dhw.sms.system;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.com.dhw.sms.archive.ArchiveEditor;
+import cn.com.dhw.sms.archive.ArchiveEditorInput;
+import cn.com.dhw.sms.db.DbOperate;
 import cn.com.dhw.sms.model.ITreeEntry;
 import cn.com.dhw.sms.navigator.NavigatorEntry;
 
@@ -17,6 +20,8 @@ public class SmsFactory {
 		{
 			NavigatorEntry c1 = new NavigatorEntry("档案管理");
 			c1.setImage(ImagesContext.getImage(ImagesContext.NOTE));
+			c1.setEditorInput(new ArchiveEditorInput());
+			c1.setEditorId(ArchiveEditor.class.getName());
 			t1.addChild(c1);
 			NavigatorEntry c2 = new NavigatorEntry("成绩管理");
 			c2.setImage(ImagesContext.getImage(ImagesContext.EDITING));
@@ -28,5 +33,10 @@ public class SmsFactory {
 		list.add(t2);
 		list.add(t3);
 		return list;
+	}
+	
+	private static DbOperate db = new DbOperate();
+	public static DbOperate getDbOperate() {
+		return db;
 	}
 }

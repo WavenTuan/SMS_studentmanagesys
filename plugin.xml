@@ -56,5 +56,14 @@
             id="cn.com.dhw.sms.score.SearchView">
       </view>
    </extension>
+   
+   <extension point="org.eclipse.ui.editors">
+	  <editor
+			name="档案管理"
+			icon="icons/editing.gif"
+			class="cn.com.dhw.sms.archive.ArchiveEditor"
+			id="cn.com.dhw.sms.archive.ArchiveEditor">
+	  </editor>
+	</extension>
 
 </plugin>

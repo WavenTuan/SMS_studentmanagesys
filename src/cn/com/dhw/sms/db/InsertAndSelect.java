@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class InsertAndSelect {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Connection con = null;
 		Statement sm = null;
 		ResultSet rs = null;
@@ -55,5 +55,5 @@ public class InsertAndSelect {
 				con = null;
 			}
 		}
-	}
+	}*/
 }

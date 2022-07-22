@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IEditorInput;
 
 import cn.com.dhw.sms.model.ITreeEntry;
 
@@ -28,4 +29,12 @@ public class NavigatorEntry implements ITreeEntry{
 
 	public Image getImage() {return image;}
 	public void setImage(Image image) {this.image = image;}
+	
+	private IEditorInput editorInput;//
+	private String editorId;//ֵ
+	
+	public IEditorInput getEditorInput() {return editorInput;}
+	public void setEditorInput(IEditorInput editorInput) {	this.editorInput = editorInput;	}
+	public String getEditorId() {return editorId;}
+	public void setEditorId(String editorId) {this.editorId = editorId;}
 }

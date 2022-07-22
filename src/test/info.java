@@ -4,7 +4,7 @@ public class info {
 	/*因为刚开始没有考虑到测试需求，所以这个test文件夹实际是空的。（sorry
 	  实际测试内容为包cn.com.dhw.sms.db中的CreateTestTable类和InsertAndSelect类。
 	  单独以java_application方式顺序运行这两个程序进行数据库连接测试。（右键单机他们，然后选择run as java_application
-	  如果连接成功，则会在后台看到SQL库中看到新建了一个sms库，里面存在一张sms表，插入了4条包含“段惠文”字符的数据。
+	  如果连接成功，则会在后台看到SQL库中看到新建了一个sms库，里面存在一张test_table表，插入了4条包含“段惠文”字符的数据。
 	  如果连接失败，应该会报各种错误。
 	  
 	  注意事项：

@@ -27,12 +27,12 @@ public class ImagesContext {
 	public final static String FIRST = "FIRST";
 	public final static String LAST = "LAST";
 
-	//ϵͳֻ��Ҫһ��ImageRegistry����
+	//
 	private static ImageRegistry imageRegistry;
 	public static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
-			declareImages();// ��ͼ��ע��
+			declareImages();//
 		}
 		return imageRegistry;
 	}
