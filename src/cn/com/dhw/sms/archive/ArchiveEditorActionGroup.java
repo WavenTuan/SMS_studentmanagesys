@@ -1,15 +1,23 @@
 package cn.com.dhw.sms.archive;
 
+import java.util.List;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.actions.ActionGroup;
 
 import cn.com.dhw.sms.Constants;
+import cn.com.dhw.sms.archive.wizard.ArchiveWizard;
 import cn.com.dhw.sms.db.DbOperate;
 import cn.com.dhw.sms.db.QueryInfo;
+import cn.com.dhw.sms.model.IUser;
 import cn.com.dhw.sms.system.ImagesContext;
 import cn.com.dhw.sms.system.SmsFactory;
 
@@ -57,7 +65,23 @@ public class ArchiveEditorActionGroup extends ActionGroup{
 			setHoverImageDescriptor(ImagesContext.getImageDescriptor("REPORT"));
 		}
 
-		public void run() {}
+		public void run() {
+			ArchiveWizard wizard = new ArchiveWizard();
+			WizardDialog dialog = new WizardDialog(null, wizard);
+			dialog.setPageSize(-1, 120); // 
+			if (dialog.open() == IDialogConstants.OK_ID) {
+				IUser user = wizard.getUser();
+				if (db.insertUser(user)) {
+					MessageDialog.openInformation(null, "", "成功插入");
+					IUser o = db.getUser(user.getUserId());
+					tv.add(o);
+					List list = (List) tv.getInput();
+					list.add(o);
+				} else {
+					MessageDialog.openError(null, "", "记录插入失败");
+				}
+			}
+		}
 	}
 
 	private class ModifyAction extends Action {
@@ -75,7 +99,23 @@ public class ArchiveEditorActionGroup extends ActionGroup{
 			setHoverImageDescriptor(ImagesContext.getImageDescriptor("REMOVE"));
 		}
 
-		public void run() {}
+		public void run() {
+			IStructuredSelection sel = (IStructuredSelection) tv.getSelection();
+			IUser user = (IUser) sel.getFirstElement();
+			if (user == null)
+				return;
+			if (MessageDialog.openConfirm(null, null, "确认删除吗？")) {
+				if (db.removeUser(user)) {
+					//从表格界面删除，同时从list源头删除
+					//否则被删除得数据会在tv.refresh得时候再次被加载
+					tv.remove(user);
+					List list = (List) tv.getInput();
+					list.remove(user);
+				} else {
+					MessageDialog.openConfirm(null, null, "删除失败！");
+				}
+			}
+		}
 	}
 
 	private class FirstAction extends Action {
